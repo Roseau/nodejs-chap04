@@ -5,7 +5,9 @@ var os = require('os');
 
 var server = http.createServer();
 server.on('request',(req, res) => {
+    //menangkap pathname dari url, dan menentukan page apa yang akan ditampilkan
     var requrl = url.parse(req.url, true);
+    //page default dengan alamat http://localhost:8124
     if (requrl.pathname === '/'){
         res.writeHead(200,{'Content-Type': 'text/html'});
         res.end(`
@@ -20,6 +22,7 @@ server.on('request',(req, res) => {
             </html>
             `); 
     } else if (requrl.pathname === "/osinfo"){
+        //page default dengan alamat http://localhost:8124/osinfo
         res.writeHead(200,{'Content-Type': 'text/html'});
         res.end(`
             <html>
@@ -62,10 +65,11 @@ server.on('request',(req, res) => {
         </html>
         `);
     } else {
+        //page yang akan dikeluarkan apabila tidak ada url yang memenuhi
         res.writeHead(404,{'Content-Type': 'text/plain'});
         res.end("bad URL"+req.url);
     }
 });
-
+require('./httpsniffer').sniffOn(server);
 server.listen(8124);
 console.log('listening to http://localhost:8124');
