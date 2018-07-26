@@ -31,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 //dengan ini, apabila url menggunakan /users, route akan akan diload. dalam kasus ini akan
 //ditampilkan "respond with resources"
+
 app.use('/fibonacci', fibonacciRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
