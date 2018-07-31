@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "server": "node ./fiboserver"
+    "server": "node ./fiboserver --max_old_space_size 5000",
+    "client": "node ./fiboclient"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
